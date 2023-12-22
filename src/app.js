@@ -1,5 +1,8 @@
 import express from "express";
 import { routerMascotas } from "../rutas/mascotasRouter.js";
+import { routerPersona } from "../rutas/personaRouter.js";
+import { routeradopciones } from "../rutas/adopcionRouter.js";
+
 import {db} from "../database/conexion.js"
 
 // import bodyParser from 'body-parser'
@@ -20,13 +23,17 @@ db.authenticate().then(()=>{
 
 //Definir rutas
 app.get("/", (req, res)=>{
-    res.send("Hola Backend Mysql")
+    res.send("Empresa Huellitas en el corazon ")
 })
 
 //Rutas
 app.use("/mascotas", routerMascotas)
+app.use("/personas", routerPersona)
+app.use("/adopcion", routeradopciones)
 //Puerto de Servidor
 const PORT = 8000
+
+
 
 db.sync().then(()=>{
     app.listen(PORT, ()=>{
