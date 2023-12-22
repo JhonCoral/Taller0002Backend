@@ -1,47 +1,28 @@
-GET http://localhost:8000/mascotas/buscar/1 HTTP/1.1
-###
-POST  http://localhost:8000/mascotas/buscar/1 HTTP/1.1
+###crear 
+POST http://localhost:8000/mascotas/crear HTTP/1.1
 Content-Type: application/json
 
 {
- "nombre":"jhonnnja",
+ "nombre":"sulter",
  "edad": 4,
  "tipo":"gato"  
 }
 
-######
-GET url http://localhost:8000/personas/buscar HTTP/1.1
-###
+###mostrar todo
+GET http://localhost:8000/mascotas/mostrar HTTP/1.1
 
-POST  http://localhost:8000/personas/crear HTTP/1.1
+###buscar por id
+GET http://localhost:8000/mascotas/buscar/1 HTTP/1.1
+
+###eliminar por id
+DELETE http://localhost:8000/mascotas/eliminar/1 HTTP/1.1
+
+####actualizar por id
+PUT http://localhost:8000/mascotas/actualizar/3 HTTP/1.1
 Content-Type: application/json
 
 {
- "nombre":"jepaa",
- "direccion":"udenar",
- "telefono":"1234"  
+ "nombre":"catall",
+ "edad": 4,
+ "tipo":"gato"  
 }
-
-
-####
-GET url http://localhost:8000/adopcion/buscar HTTP/1.1
-###
-
-POST  http://localhost:8000/adopcion/crear HTTP/1.1
-Content-Type: application/json
-
-{
- 
- "id_mascota":2,
- "id_persona":9,
- "estado":"adoptado" 
-}
-
-###
-DELETE http://localhost:8000/mascotas/eliminar/11 HTTP/1.1
-
-####
-GET http://localhost:8000/mascotas/buscar/4 HTTP/1.1
-
-
-

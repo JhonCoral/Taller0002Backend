@@ -9,19 +9,18 @@ const crear = (req, res) => {
     }
     const dataset = {
         nombre: req.body.nombre,
-        edad: req.body.edad,
-        tipo: req.body.tipo
+        edad: req.body.edad
     }
 
     //Usar Sequeliza para crear el recurso
     mascota.create(dataset).then((resultado) => {
-        res.status(200).json("Registro actualizado correctamente")
+        res.status(200).json("Registro creado correctamente")
     }).catch(err => res.send({ mensaje: `Error al crear el registro ::: ${err} `}))
 }
 
 const getPets = async (req, res) => {
     try {
-        const mascota = await patitas.findAll();
+        const pets = await mascota.findAll();
         res.status(200).json(pets);
     } catch (error) {
         res.status(500).json({ mensaje: `Error al obtener las mascotas ::: ${error.message} `});
@@ -32,19 +31,12 @@ const getPets = async (req, res) => {
 const buscarById = async (req, res) => {
     try {
         const { id } = req.params;
-<<<<<<< HEAD
         
-        const pet = await mascotas.findByPk(id);
+        const pet = await mascota.findByPk(id);
         if (!id) {
             return res.status(400).json({ mensaje: `El parámetro 'id' es requerido. ${id} `});
         }
         
-=======
-        if (!id) {
-            return res.status(400).json({ mensaje: "El parámetro 'id' es requerido." });
-        }
-        const pet = await patitas.findByPk(id);
->>>>>>> ea01601fc66bb9ae57c4b92a4437412182e5cd58
         if (!pet) {
             return res.status(404).json({ mensaje: "Mascota no encontrada." });
         }
@@ -57,18 +49,18 @@ const buscarById = async (req, res) => {
 const actualizar = async (req, res) => {
     try {
         const { id } = req.params;
-        const { nombre, edad,tipo } = req.body;
+        const { nombre, edad } = req.body;
 
-        if (!nombre && !edad ) {
+        if (!nombre && !edad) {
             res.status(400).json({ mensaje: "Los campos 'nombre' o 'edad' son requeridos para actualizar." });
             return;
         }
-        const pet = await patitas.findByPk(id);
+        const pet = await mascota.findByPk(id);
         if (!pet) {
             res.status(404).json({ mensaje: "Mascota no encontrada." });
             return;
         }
-        await pet.update({ nombre, edad,tipo });
+        await pet.update({ nombre, edad });
         res.status(200).json({ mensaje: "Registro actualizado correctamente" });
     } catch (error) {
         res.status(500).json({ mensaje: `Error al actualizar la mascota: ${error.message}` });
@@ -88,6 +80,6 @@ const eliminar = async (req, res) => {
     } catch (error) {
         res.status(500).json({ mensaje: `Error al eliminar la mascota: ${error.message}` });
     }
-}
+};
 
 export { crear, getPets, buscarById, actualizar, eliminar };
