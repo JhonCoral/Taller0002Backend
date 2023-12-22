@@ -31,10 +31,12 @@ const getPets = async (req, res) => {
 const buscarById = async (req, res) => {
     try {
         const { id } = req.params;
-        if (!id) {
-            return res.status(400).json({ mensaje: "El parámetro 'id' es requerido." });
-        }
+        
         const pet = await mascotas.findByPk(id);
+        if (!id) {
+            return res.status(400).json({ mensaje: `El parámetro 'id' es requerido. ${id} `});
+        }
+        
         if (!pet) {
             return res.status(404).json({ mensaje: "Mascota no encontrada." });
         }
@@ -47,9 +49,9 @@ const buscarById = async (req, res) => {
 const actualizar = async (req, res) => {
     try {
         const { id } = req.params;
-        const { nombre, edad } = req.body;
+        const { nombre, edad,tipo } = req.body;
 
-        if (!nombre && !edad) {
+        if (!nombre && !edad ) {
             res.status(400).json({ mensaje: "Los campos 'nombre' o 'edad' son requeridos para actualizar." });
             return;
         }
@@ -58,7 +60,7 @@ const actualizar = async (req, res) => {
             res.status(404).json({ mensaje: "Mascota no encontrada." });
             return;
         }
-        await pet.update({ nombre, edad });
+        await pet.update({ nombre, edad,tipo });
         res.status(200).json({ mensaje: "Registro actualizado correctamente" });
     } catch (error) {
         res.status(500).json({ mensaje: `Error al actualizar la mascota: ${error.message}` });
@@ -78,6 +80,6 @@ const eliminar = async (req, res) => {
     } catch (error) {
         res.status(500).json({ mensaje: `Error al eliminar la mascota: ${error.message}` });
     }
-};
+}
 
 export { crear, getPets, buscarById, actualizar, eliminar };

@@ -4,7 +4,7 @@ import { crear, getPets, buscarById, actualizar, eliminar } from "../controlador
 
 const routerMascotas = express.Router()
 
-routerMascotas.get("/", (req,res)=>{
+routerMascotas.get("/mostrar", (req,res)=>{
     getPets(req,res)
 })
 
@@ -25,4 +25,3 @@ routerMascotas.delete("/eliminar/:id", (req,res)=>{
 })
 
 export {routerMascotas}
-

@@ -1,9 +1,10 @@
 
 import Sequelize  from "sequelize";
+
 import {db} from "../database/conexion.js";
 
 const mascotas = db.define("mascotas",{
-    id:{
+    id :{
         type:Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
@@ -17,6 +18,9 @@ const mascotas = db.define("mascotas",{
         type: Sequelize.INTEGER,
         allowNull:true
     }
-});
+})
+
+
 
 export {mascotas}
+
