@@ -1,9 +1,10 @@
 
 import Sequelize  from "sequelize";
+import { mascota } from "./mascotasModelo.js";
 
 import {db} from "../database/conexion.js";
 
-const mascota = db.define("mascotas",{
+const solicitud = db.define("solicitudes",{
     id :{
         type:Sequelize.INTEGER,
         allowNull: false,
@@ -14,37 +15,20 @@ const mascota = db.define("mascotas",{
         type: Sequelize.STRING,
         allowNull: true
     },
-    tipo:{
+    telefono:{
         type: Sequelize.STRING,
         allowNull: true
     },
-    raza:{
+    correo:{
         type: Sequelize.STRING,
         allowNull: true
     },
-    edad:{
+    id_mascota:{
         type: Sequelize.INTEGER,
-        allowNull:true
-    },
-    estado:{
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    foto:{
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    cualidades:{
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    detalles:{
-        type: Sequelize.STRING,
-        allowNull: true
+        allowNull:false    
     }
 })
 
-
-
-export {mascota}
+solicitud.belongsTo(mascota,{foreignKey:'id_mascota'});
+export {solicitud}
 

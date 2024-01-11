@@ -12,10 +12,10 @@ Content-Type: application/json
 GET http://localhost:8000/mascotas/mostrar HTTP/1.1
 
 ###buscar por id
-GET http://localhost:8000/mascotas/buscar/1 HTTP/1.1
+GET http://localhost:8000/mascotas/buscar/3 HTTP/1.1
 
 ###eliminar por id
-DELETE http://localhost:8000/mascotas/eliminar/1 HTTP/1.1
+DELETE http://localhost:8000/mascotas/eliminar/4 HTTP/1.1
 
 ####actualizar por id
 PUT http://localhost:8000/mascotas/actualizar/3 HTTP/1.1
@@ -26,3 +26,6 @@ Content-Type: application/json
  "edad": 4,
  "tipo":"gato"  
 }
+
+###
+DELETE http://localhost:8000/solicitudes/eliminar/1 HTTP/1.1

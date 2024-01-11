@@ -1,8 +1,9 @@
 import express from "express";
 import { routerMascotas } from "../rutas/mascotasRouter.js";
-
-
 import {db} from "../database/conexion.js"
+import cors from "cors";
+import { routerSolicitudes } from "../rutas/solicitudRouter.js";
+
 
 // import bodyParser from 'body-parser'
 
@@ -10,6 +11,7 @@ import {db} from "../database/conexion.js"
 const app = express()
 
 //app.use(bodyParser.json())
+app.use(cors());
 app.use(express.json())
 
 
@@ -27,6 +29,8 @@ app.get("/", (req, res)=>{
 
 //Rutas
 app.use("/mascotas", routerMascotas)
+app.use("/solicitudes", routerSolicitudes)
+
 
 //Puerto de Servidor
 const PORT = 8000
